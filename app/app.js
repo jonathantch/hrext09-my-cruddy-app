@@ -11,24 +11,27 @@
 
 //create
 var createItem = function() {
+  var songList = JSON.parse(window.localStorage.getItem('songList')) || [];
   var songName = $("#songName").val();
-    var artist = $("#artist").val();
-    var bpm = $("#bpm").val();
-    var genre = $("#genre").val();
-    var youtubeLink = $("#youtubeLink").val();
-    var difficulty = $("#difficulty").val();
+  var artist = $("#artist").val();
+  var bpm = $("#bpm").val();
+  var genre = $("#genre").val();
+  var youtubeLink = $("#youtubeLink").val();
+  var difficulty = $("#difficulty").val();
 
-    var key = artist + ' - ' + songName;
-    var value = {};
+  var key = artist + ' - ' + songName;
+  var value = {};
 
-    value.songName = songName;
-    value.artist = artist;
-    value.bpm = bpm;
-    value.genre = genre;
-    value.youtubeLink = youtubeLink;
-    value.difficulty = difficulty;
+  value.songName = songName;
+  value.artist = artist;
+  value.bpm = bpm;
+  value.genre = genre;
+  value.youtubeLink = youtubeLink;
+  value.difficulty = difficulty;
 
-    return window.localStorage.setItem(key, JSON.stringify(value));
+  songList.push(value);
+
+  return window.localStorage.setItem('songList', JSON.stringify(songList));
 }
 
 
@@ -37,7 +40,11 @@ var createItem = function() {
   //preventdefault on button clicks
 $(document).ready(function() {
   $('#addSong').click(function(event) {
-    // event.preventDefault();
+    // event.preventDefault();   
     createItem();
   });
 });
+
+
+// Good Love Is On The Way, John Mayer, 93, blues, https://www.youtube.com/watch?v=6OxE1p_YKOI, Easy
+// I Don't Wanna Miss A Thing, AeroSmith, 61, soft rock, https://www.youtube.com/watch?v=Ss0kFNUP4P4, Easy
