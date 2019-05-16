@@ -34,14 +34,28 @@ var createItem = function() {
   return window.localStorage.setItem('songList', JSON.stringify(songList));
 }
 
+var renderList = function() {
+  var songList = JSON.parse(window.localStorage.getItem('songList')) || [];
+  for (var i = 0; i < songList.length; i++) {
+    var artist = songList[i].artist;
+    var songName = songList[i].songName;
+    var $song = $('<div></div>').addClass('songItem').attr('id', artist + '-' + songName);
+    $song.text(artist + ' - ' + songName);
+
+    $('#listContainer').append($song);
+  }
+}
+
 
 ///////////////////////////////////////////
 //event handlers for the buttons and ... possibly the inputboxes
   //preventdefault on button clicks
 $(document).ready(function() {
+  renderList();
   $('#addSong').click(function(event) {
     // event.preventDefault();   
     createItem();
+    renderList();
   });
 });
 
