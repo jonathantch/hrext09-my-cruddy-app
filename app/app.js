@@ -34,7 +34,7 @@ var createItem = function() {
   return window.localStorage.setItem('songList', JSON.stringify(songList));
 }
 
-var renderList = function() {
+var renderSongList = function() {
   var songList = JSON.parse(window.localStorage.getItem('songList')) || [];
   for (var i = 0; i < songList.length; i++) {
     var artist = songList[i].artist;
@@ -51,11 +51,11 @@ var renderList = function() {
 //event handlers for the buttons and ... possibly the inputboxes
   //preventdefault on button clicks
 $(document).ready(function() {
-  renderList();
+  renderSongList();
   $('#addSong').click(function(event) {
     // event.preventDefault();   
     createItem();
-    renderList();
+    renderSongList();
   });
 });
 
