@@ -37,6 +37,16 @@ var createItem = function() {
     return window.localStorage.setItem(key, JSON.stringify(value));
 }
 
+var renderList = function() {
+  for (var key in window.localStorage) { // key = artist + songName
+    var songObj = JSON.stringify(getItem(key));
+    var $song = $('<div></div>').addClass('songItem');
+    $song.text(key);
+    console.log(songObj);
+    // eachItemDiv.appendTO('#listContainer');
+  }
+}
+
 // //update
 // var updateItem = function(key, value) {
 //   return window.localStorage.setItem(key, value);
@@ -62,8 +72,10 @@ var createItem = function() {
 //event handlers for the buttons and ... possibly the inputboxes
   //preventdefault on button clicks
 $(document).ready(function() {
+  renderList();
   $('#addSong').click(function(event) {
     // event.preventDefault();
     createItem();
   });
+  
 });
