@@ -10,17 +10,17 @@
 */
 
 //create
-var createItem = function() {
-  var songList = JSON.parse(window.localStorage.getItem('songList')) || [];
-  var songName = $("#songName").val();
-  var artist = $("#artist").val();
-  var bpm = $("#bpm").val();
-  var genre = $("#genre").val();
-  var youtubeLink = $("#youtubeLink").val();
-  var difficulty = $("#difficulty").val();
+let createItem = function() {
+  let songList = JSON.parse(window.localStorage.getItem('songList')) || [];
+  let songName = $("#songName").val();
+  let artist = $("#artist").val();
+  let bpm = $("#bpm").val();
+  let genre = $("#genre").val();
+  let youtubeLink = $("#youtubeLink").val();
+  let difficulty = $("#difficulty").val();
 
-  var key = artist + ' - ' + songName;
-  var value = {};
+  let key = artist + ' - ' + songName;
+  let value = {};
 
   value.songName = songName;
   value.artist = artist;
@@ -34,12 +34,12 @@ var createItem = function() {
   return window.localStorage.setItem('songList', JSON.stringify(songList));
 }
 
-var renderSongList = function() {
-  var songList = JSON.parse(window.localStorage.getItem('songList')) || [];
-  for (var i = 0; i < songList.length; i++) {
-    var artist = songList[i].artist;
-    var songName = songList[i].songName;
-    var $song = $('<div></div>').addClass('songItem').attr('id', artist + '-' + songName);
+let renderSongList = function() {
+  let songList = JSON.parse(window.localStorage.getItem('songList')) || [];
+  for (let i = 0; i < songList.length; i++) {
+    let artist = songList[i].artist;
+    let songName = songList[i].songName;
+    let $song = $('<div></div>').addClass('songItem').attr('id', artist + '-' + songName);
     $song.text(artist + ' - ' + songName);
 
     $('#listContainer').append($song);
