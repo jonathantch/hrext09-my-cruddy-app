@@ -57,18 +57,24 @@ let renderSongList = function() {
     let songNum = 'song' + i;
     let artist = songList[i].artist;
     let songName = songList[i].songName;
-    // console.log(songNum);
-    let $song = $('<li></li>').addClass('songItem').attr('id', songNum).text(artist + ' - ' + songName);
-    // console.log(createDeleteButton(songName, artist, songNum));
 
+    let $song = $('<li></li>').addClass('songItem').attr('id', songNum).text(artist + ' - ' + songName);
     let $deleteButton = createDeleteButton(songName, artist, songNum);
-    // console.log($deleteButton);
 
     $('#listContainer').append($song, $deleteButton);
+
     $('#del' + songNum).on('click', function() { // The delete functionality has to be defined after the button is appended.
       $('#' + songNum).remove(); // remove songDiv
       deleteFromLocalStorage(artist, songName); // delete from local storage
       $('#del' + songNum).remove(); // remove the button itself
+    });
+
+    $('#' + songNum).on('click', function() {
+      $('#infoContainer').empty();
+      for (let key in songList[i]) {
+        let $info = $('<li></li>').addClass('infoItem').attr('id', songNum + 'Info').text(key + ': ' + songList[i][key]);
+        $('#infoContainer').append($info);
+      }
     });
   }
 }
