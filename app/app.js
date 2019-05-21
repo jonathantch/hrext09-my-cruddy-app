@@ -9,7 +9,7 @@
 
 */
 
-//create
+// Add functionality
 let createItem = function() {
   let songList = JSON.parse(window.localStorage.getItem('songList')) || [];
   let songName = $("#songName").val();
@@ -43,6 +43,7 @@ let createDeleteButton = function(songName, artist, songNum) {
   return deleteButton;   
 }
 
+// Delete functionality
 let deleteFromLocalStorage = function(artist, songName) {
   let songList = JSON.parse(window.localStorage.getItem('songList'));
   let filterSongList = songList.filter(function(ele) {
@@ -52,6 +53,7 @@ let deleteFromLocalStorage = function(artist, songName) {
 }
 
 let renderSongList = function() {
+
   let songList = JSON.parse(window.localStorage.getItem('songList')) || [];
   for (let i = 0; i < songList.length; i++) {
     let songNum = 'song' + i;
@@ -72,8 +74,18 @@ let renderSongList = function() {
     $('#' + songNum).on('click', function() {
       $('#infoContainer').empty();
       for (let key in songList[i]) {
-        let $info = $('<li></li>').addClass('infoItem').attr('id', songNum + 'Info').text(key + ': ' + songList[i][key]);
-        $('#infoContainer').append($info);
+        let $infoKey = $('<li></li>').addClass('infoKey').attr('id', songNum + key + 'InfoKey').text(key + ': ');
+        let $infoValue = $('<div></div>').addClass('infoValue').attr('id', songNum + key + 'InfoValue').attr('contenteditable', 'true').text(songList[i][key]);
+        let $saveButton = $('<button></button>').addClass('saveButton').attr('id', songNum + key + 'SaveButton').text('Save');
+        
+        $('#infoContainer').append($infoKey, $infoValue, $saveButton);
+        
+        // Edit Functionality
+        $('#' + songNum + key + 'SaveButton').on('click', function() {
+          songList[i][key] = $infoValue.text();
+          window.localStorage.setItem('songList', JSON.stringify(songList));
+          alert('Save Successfully!')
+      });
       }
     });
   }
@@ -86,7 +98,8 @@ let renderSongList = function() {
 $(document).ready(function() {
   renderSongList();
   $('#addSong').click(function(event) {
-    // event.preventDefault();   
+    // event.preventDefault();
+    $('#listContainer').empty();   
     createItem();
     renderSongList();
   });
@@ -94,4 +107,4 @@ $(document).ready(function() {
 
 
 // Good Love Is On The Way, John Mayer, 93, blues, https://www.youtube.com/watch?v=6OxE1p_YKOI, Easy
-// I Don't Wanna Miss A Thing, AeroSmith, 61, soft rock, https://www.youtube.com/watch?v=Ss0kFNUP4P4, Easy
+// I Don't Wanna Miss A Thing, AeroSmith, 61, soft rock, https://www.youtube.com/watch?v=JkK8g6FMEXE, Easy
