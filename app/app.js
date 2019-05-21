@@ -55,6 +55,7 @@ let deleteFromLocalStorage = function(artist, songName) {
 let renderSongList = function() {
 
   let songList = JSON.parse(window.localStorage.getItem('songList')) || [];
+
   for (let i = 0; i < songList.length; i++) {
     let songNum = 'song' + i;
     let artist = songList[i].artist;
@@ -71,6 +72,7 @@ let renderSongList = function() {
       $('#del' + songNum).remove(); // remove the button itself
     });
 
+    // Render song details when you click on a certain song
     $('#' + songNum).on('click', function() {
       $('#infoContainer').empty();
       for (let key in songList[i]) {
@@ -85,20 +87,16 @@ let renderSongList = function() {
           songList[i][key] = $infoValue.text();
           window.localStorage.setItem('songList', JSON.stringify(songList));
           alert('Save Successfully!')
-      });
+        });
       }
     });
   }
 }
 
 
-///////////////////////////////////////////
-//event handlers for the buttons and ... possibly the inputboxes
-  //preventdefault on button clicks
 $(document).ready(function() {
   renderSongList();
   $('#addSong').click(function(event) {
-    // event.preventDefault();
     $('#listContainer').empty();   
     createItem();
     renderSongList();
