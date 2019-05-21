@@ -3,41 +3,62 @@
 <head>
   <meta charset="UTF-8">
   <title>HREXT09 R00lz!</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
   <script
           src="https://code.jquery.com/jquery-3.3.1.js"
           integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
           crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js"></script>
 </head>
-<body> 
-  <form>
-    <label for="songName">Song Name: </label>
-    <input id="songName" type="text" placeholder="Song Name"></input>
-
-    <label for="artist">Artist: </label>
-    <input id="artist" type="text" placeholder="Artist"></input>
-
-    <label for="bpm">Beats Per Minute: </label>
-    <input id="bpm" type="number" placeholder="Beats Per Minute"></input>
-
-    <label for="genre">Music Genre: </label>
-    <input id="genre" type="text" placeholder="Music Genre"></input>
-
-    <label for="youtubeLink">Youtube Link: </label>
-    <input id="youtubeLink" type="url" placeholder="Youtube Link"></input>
-
-    <label for="difficulty">Difficulty: </label>
-    <input id="difficulty" type="text" placeholder="Difficulty"></input>
-
-
-    <button id="addSong" type='submit'>Add Song</button>
-  </form>
-  <div> Song List </div>
-  <ul id="listContainer">
-  </ul>
-  <div> Details </div>
-  <ul id="infoContainer">
-  </ul>
+<body>
+  <header>Music Practice List</header>
+  <div id="entireContent">
+    <div id="formSection">
+      <h3> Input Form </h3>
+      <form class="form-inline">
+        <div class=form-group>
+          <label for="songName">Song Name: </label>
+          <input id="songName" type="text" placeholder="Song Name"></input>
+        </div>
+  
+        <div class=form-group>
+          <label for="artist">Artist: </label>
+          <input id="artist" type="text" placeholder="Artist"></input>
+        </div>
+  
+        <div class=form-group>
+          <label for="bpm">Beats Per Minute: </label>
+          <input id="bpm" type="number" placeholder="Beats Per Minute"></input>
+        </div>
+  
+        <div class=form-group>
+          <label for="genre">Music Genre: </label>
+          <input id="genre" type="text" placeholder="Music Genre"></input>
+        </div>
+  
+        <div class=form-group>
+          <label for="youtubeLink">Youtube Link: </label>
+          <input id="youtubeLink" type="url" placeholder="Youtube Link"></input>
+        </div>
+  
+        <div class=form-group>
+          <label for="difficulty">Difficulty: </label>
+          <input id="difficulty" type="text" placeholder="Difficulty"></input>
+        </div>
+      </form>
+      <button id="addSong" type='submit'>Add Song</button>
+    </div>
+    <div id="songListSection">
+      <h3> Song List </h3>
+      <ul id="listContainer">
+      </ul>
+    </div>
+    <div id="infoSection">
+      <h3> Details </h3>
+      <ul id="infoContainer">
+      </ul>
+    </div>
+  </div>
   <script src='app/app.js'></script>
 </body>
 </html>

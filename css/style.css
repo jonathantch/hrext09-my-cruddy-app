@@ -2,3 +2,35 @@
   input boxes
   buttons
 */
+header {
+	text-align: center;
+	font-size: xx-large;
+	font-weight: bold;
+	margin-top: 20px;
+	margin-bottom: 50px;
+}
+
+#entireContent {
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+#formSection {
+	width: 30%;
+	display: flex;
+	flex-direction: column;
+}
+
+#addSong {
+	width: 100px;
+	margin: 20px;
+}
+
+#songListSection {
+	width: 30%;
+}
+
+#infoSection {
+	width: 40%;
+}
