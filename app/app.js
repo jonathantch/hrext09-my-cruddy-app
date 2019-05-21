@@ -34,15 +34,33 @@ let createItem = function() {
   return window.localStorage.setItem('songList', JSON.stringify(songList));
 }
 
+// Delete button
+let createDeleteButton = function(songName, artist, songNum) {
+  let deleteButton = $('<button></button>').addClass('deleteButton').attr('id', 'del' + songNum);
+  deleteButton.text('delete this song');
+
+  $('#del' + songNum).on('click', function() {
+    console.log(songNum);
+    $('#' + songNum).remove(); // remove songDiv
+    window.localStorage.removeItem(artist + ' - ' + songName); // delete from local storage
+    $('#del' + songNum).remove(); // remove the button itself
+  });
+  return deleteButton;   
+}
+
 let renderSongList = function() {
   let songList = JSON.parse(window.localStorage.getItem('songList')) || [];
   for (let i = 0; i < songList.length; i++) {
+    let songNum = 'song' + i;
     let artist = songList[i].artist;
     let songName = songList[i].songName;
-    let $song = $('<div></div>').addClass('songItem').attr('id', artist + '-' + songName);
-    $song.text(artist + ' - ' + songName);
+    // console.log(songNum);
+    let $song = $('<li></li>').addClass('songItem').attr('id', songNum).text(artist + ' - ' + songName);
+    // console.log(createDeleteButton(songName, artist, songNum));
 
-    $('#listContainer').append($song);
+    let $deleteButton = createDeleteButton(songName, artist, songNum);
+    // console.log($deleteButton);
+    $('#listContainer').append($song, $deleteButton);
   }
 }
 
