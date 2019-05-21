@@ -39,13 +39,16 @@ let createDeleteButton = function(songName, artist, songNum) {
   let deleteButton = $('<button></button>').addClass('deleteButton').attr('id', 'del' + songNum);
   deleteButton.text('delete this song');
 
-  $('#del' + songNum).on('click', function() {
-    console.log(songNum);
-    $('#' + songNum).remove(); // remove songDiv
-    window.localStorage.removeItem(artist + ' - ' + songName); // delete from local storage
-    $('#del' + songNum).remove(); // remove the button itself
-  });
+  
   return deleteButton;   
+}
+
+let deleteFromLocalStorage = function(artist, songName) {
+  let songList = JSON.parse(window.localStorage.getItem('songList'));
+  let filterSongList = songList.filter(function(ele) {
+    return !(ele.artist === artist && ele.songName === songName);
+  });
+  return window.localStorage.setItem('songList', JSON.stringify(filterSongList));
 }
 
 let renderSongList = function() {
@@ -60,7 +63,13 @@ let renderSongList = function() {
 
     let $deleteButton = createDeleteButton(songName, artist, songNum);
     // console.log($deleteButton);
+
     $('#listContainer').append($song, $deleteButton);
+    $('#del' + songNum).on('click', function() { // The delete functionality has to be defined after the button is appended.
+      $('#' + songNum).remove(); // remove songDiv
+      deleteFromLocalStorage(artist, songName); // delete from local storage
+      $('#del' + songNum).remove(); // remove the button itself
+    });
   }
 }
 
