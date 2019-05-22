@@ -76,11 +76,13 @@ let renderSongList = function() {
     $('#' + songNum).on('click', function() {
       $('#infoContainer').empty();
       for (let key in songList[i]) {
-        let $infoKey = $('<li></li>').addClass('infoKey').attr('id', songNum + key + 'InfoKey').text(key + ': ');
+        let $itemContainer = $('<li></li').addClass('itemContainer').attr('id', songNum + key + '');  
+        let $infoKey = $('<div></div>').addClass('infoKey').attr('id', songNum + key + 'InfoKey').text(key + ': ');
         let $infoValue = $('<div></div>').addClass('infoValue').attr('id', songNum + key + 'InfoValue').attr('contenteditable', 'true').text(songList[i][key]);
         let $saveButton = $('<button></button>').addClass('saveButton').attr('id', songNum + key + 'SaveButton').text('Save');
         
-        $('#infoContainer').append($infoKey, $infoValue, $saveButton);
+        $itemContainer.append($infoKey, $infoValue);
+        $('#infoContainer').append($itemContainer, $saveButton);
         
         // Edit Functionality
         $('#' + songNum + key + 'SaveButton').on('click', function() {
@@ -100,6 +102,7 @@ $(document).ready(function() {
     $('#listContainer').empty();   
     createItem();
     renderSongList();
+    $('#addSong').reset()
   });
 });
 

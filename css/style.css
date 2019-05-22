@@ -34,3 +34,12 @@ header {
 #infoSection {
 	width: 40%;
 }
+
+.itemContainer {
+	display: flex;
+	justify-content: flex-start;
+}
+
+.infoValue {
+	margin-left: 5px;
+}
