@@ -67,9 +67,12 @@ let renderSongList = function() {
     $('#listContainer').append($song, $deleteButton);
 
     $('#del' + songNum).on('click', function() { // The delete functionality has to be defined after the button is appended.
-      $('#' + songNum).remove(); // remove songDiv
-      deleteFromLocalStorage(artist, songName); // delete from local storage
-      $('#del' + songNum).remove(); // remove the button itself
+      let result = confirm('want to delete?');
+      if (result) {
+        $('#' + songNum).remove(); // remove songDiv
+        deleteFromLocalStorage(artist, songName); // delete from local storage
+        $('#del' + songNum).remove(); // remove the button itself
+      }
     });
 
     // Render song details when you click on a certain song
@@ -86,9 +89,11 @@ let renderSongList = function() {
         
         // Edit Functionality
         $('#' + songNum + key + 'SaveButton').on('click', function() {
-          songList[i][key] = $infoValue.text();
-          window.localStorage.setItem('songList', JSON.stringify(songList));
-          alert('Save Successfully!')
+          let result = confirm('want to save the edit?');
+          if (result) {
+            songList[i][key] = $infoValue.text();
+            window.localStorage.setItem('songList', JSON.stringify(songList));
+          }
         });
       }
     });
