@@ -2,7 +2,15 @@
   input boxes
   buttons
 */
+html {
+	background: linear-gradient(#2A1B3D, 70%, #44318D);
+	background-repeat: no-repeat;
+	width: 100%;
+	height: 100%;
+}
+
 header {
+	color: white;
 	text-align: center;
 	font-size: xx-large;
 	font-weight: bold;
@@ -10,7 +18,15 @@ header {
 	margin-bottom: 50px;
 }
 
+button {
+	background-color: transparent;
+	color: white;
+	border-color: white;
+	border-radius: 10px;
+}
+
 #entireContent {
+	color: white;
 	width: 100%;
 	display: flex;
 	flex-wrap: wrap;
@@ -22,6 +38,11 @@ header {
 	flex-direction: column;
 }
 
+.form-group {
+	margin-top: 5px;
+	margin-bottom: 15px;
+}
+
 #addSong {
 	width: 100px;
 	margin: 20px;
@@ -29,6 +50,11 @@ header {
 
 #songListSection {
 	width: 30%;
+}
+
+.deleteButton {
+	margin-top: 5px;
+	margin-bottom: 10px;
 }
 
 #infoSection {
@@ -42,4 +68,9 @@ header {
 
 .infoValue {
 	margin-left: 5px;
+}
+
+.saveButton {
+	margin-top: 5px;
+	margin-bottom: 10px;
 }

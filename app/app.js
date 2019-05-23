@@ -102,7 +102,7 @@ $(document).ready(function() {
     $('#listContainer').empty();   
     createItem();
     renderSongList();
-    $('#addSong').reset()
+    $('#addSong').trigger('reset');
   });
 });
 
