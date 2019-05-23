@@ -101,8 +101,7 @@ $(document).ready(function() {
   $('#addSong').click(function(event) {
     $('#listContainer').empty();   
     createItem();
-    renderSongList();
-    $('#addSong').trigger('reset');
+    setTimeout(function(){window.location.reload();}, 10);
   });
 });
 
