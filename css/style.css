@@ -19,6 +19,7 @@ header {
 }
 
 button {
+	font-size: 10px;
 	background-color: transparent;
 	color: white;
 	border-color: white;
@@ -53,6 +54,7 @@ button {
 }
 
 .deleteButton {
+	margin-left: 5px;
 	margin-top: 5px;
 	margin-bottom: 10px;
 }

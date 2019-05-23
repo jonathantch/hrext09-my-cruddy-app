@@ -37,7 +37,7 @@ let createItem = function() {
 // Delete button
 let createDeleteButton = function(songName, artist, songNum) {
   let deleteButton = $('<button></button>').addClass('deleteButton').attr('id', 'del' + songNum);
-  deleteButton.text('delete this song');
+  deleteButton.text('Delete This Song');
 
   
   return deleteButton;   
@@ -62,9 +62,13 @@ let renderSongList = function() {
     let songName = songList[i].songName;
 
     let $song = $('<li></li>').addClass('songItem').attr('id', songNum).text(artist + ' - ' + songName);
+    let $viewButton = $('<button></button>').addClass('viewButton').attr('id', 'view' + songNum).text('Display Details');
     let $deleteButton = createDeleteButton(songName, artist, songNum);
+    let $songListButtonContainer = $('<div></div>').addClass('songListButtonContainer').attr('id', 'display' + songNum);
 
-    $('#listContainer').append($song, $deleteButton);
+    $songListButtonContainer.append($viewButton, $deleteButton);
+
+    $('#listContainer').append($song, $songListButtonContainer);
 
     $('#del' + songNum).on('click', function() { // The delete functionality has to be defined after the button is appended.
       let result = confirm('want to delete?');
@@ -76,13 +80,13 @@ let renderSongList = function() {
     });
 
     // Render song details when you click on a certain song
-    $('#' + songNum).on('click', function() {
+    $('#display' + songNum).on('click', function() {
       $('#infoContainer').empty();
       for (let key in songList[i]) {
         let $itemContainer = $('<li></li').addClass('itemContainer').attr('id', songNum + key + '');  
         let $infoKey = $('<div></div>').addClass('infoKey').attr('id', songNum + key + 'InfoKey').text(key + ': ');
         let $infoValue = $('<div></div>').addClass('infoValue').attr('id', songNum + key + 'InfoValue').attr('contenteditable', 'true').text(songList[i][key]);
-        let $saveButton = $('<button></button>').addClass('saveButton').attr('id', songNum + key + 'SaveButton').text('Save');
+        let $saveButton = $('<button></button>').addClass('saveButton').attr('id', songNum + key + 'SaveButton').text('Save Edit');
         
         $itemContainer.append($infoKey, $infoValue);
         $('#infoContainer').append($itemContainer, $saveButton);
